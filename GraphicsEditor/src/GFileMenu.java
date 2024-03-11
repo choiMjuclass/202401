@@ -7,6 +7,4 @@ public class GFileMenu extends JMenu {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}
-
-
 }
