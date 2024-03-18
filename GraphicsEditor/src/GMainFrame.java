@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JRadioButton;
 
 public class GMainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -24,14 +27,19 @@ public class GMainFrame extends JFrame {
 		this.menuBar = new GMenuBar();
 		this.setJMenuBar(this.menuBar);
 		
-		this.shapeToolBar = new GShapeToolBar();
+		ShapeActionHandler shapeActionHandler = new ShapeActionHandler();
+		this.shapeToolBar = new GShapeToolBar(shapeActionHandler);
 		this.add(shapeToolBar, BorderLayout.NORTH);
 		
 		this.drawingPanel = new GDrawingPanel();
 		this.add(drawingPanel, BorderLayout.CENTER);
-		
-
 	}
-
-
+	
+	public class ShapeActionHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			drawingPanel.setShapeText(((JRadioButton)e.getSource()).getText());
+		}
+		
+	}
 }

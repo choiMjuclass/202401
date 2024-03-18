@@ -5,9 +5,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 public class GDrawingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private String shapeText;
 	
 	public GDrawingPanel() {
 		this.setBackground(Color.gray);
@@ -15,12 +18,26 @@ public class GDrawingPanel extends JPanel {
 		this.addMouseListener(mouseEventHandler);		
 		this.addMouseMotionListener(mouseEventHandler);
 	}
+	public void setShapeText(String shapeText) {
+		this.shapeText = shapeText;		
+		System.out.println(shapeText);
+	}
 	
 	public void paint(Graphics graphics) {
 	}
 	private void draw(int x, int y) {
-		Graphics graphics = this.getGraphics();
-		graphics.fillRect(x, y, 20, 30);		
+		if (this.shapeText.equals("rectange")) {
+			Graphics graphics = this.getGraphics();
+			graphics.drawRect(x, y, 20, 30);	
+		} else if (this.shapeText.equals("oval")) {
+			Graphics graphics = this.getGraphics();
+			graphics.drawOval(x, y, 20, 30);	
+		} else if (this.shapeText.equals("line")) {
+			Graphics graphics = this.getGraphics();
+			graphics.drawLine(x, y, 20, 30);	
+		} else if (this.shapeText.equals("polygon")) {
+			Graphics graphics = this.getGraphics();
+		}
 	}
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
@@ -57,5 +74,6 @@ public class GDrawingPanel extends JPanel {
 			System.out.println(this.getClass().getEnclosingMethod());
 		}		
 	}
+
 
 }
