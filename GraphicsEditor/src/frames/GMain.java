@@ -1,4 +1,4 @@
-
+package frames;
 public class GMain {
 
 	public GMain() {

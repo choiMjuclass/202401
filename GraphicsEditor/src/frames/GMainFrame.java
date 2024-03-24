@@ -1,11 +1,12 @@
+package frames;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
+
+import global.Constants.EShapeButtons;
 
 public class GMainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -35,10 +36,11 @@ public class GMainFrame extends JFrame {
 		this.add(drawingPanel, BorderLayout.CENTER);
 	}
 	
-	public class ShapeActionHandler implements ActionListener {
+	public class ShapeActionHandler implements ActionListener {;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			drawingPanel.setShapeText(((JRadioButton)e.getSource()).getText());
+			EShapeButtons eShapeButton = EShapeButtons.valueOf(e.getActionCommand());
+			drawingPanel.setShapeTool(eShapeButton.getShapeTool());
 		}
 		
 	}

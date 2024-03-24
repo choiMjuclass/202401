@@ -1,3 +1,4 @@
+package frames;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -7,10 +8,12 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import shapeTools.GShapeTool;
+
 public class GDrawingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String shapeText;
+	private GShapeTool shapeTool;
 	
 	public GDrawingPanel() {
 		this.setBackground(Color.gray);
@@ -18,26 +21,14 @@ public class GDrawingPanel extends JPanel {
 		this.addMouseListener(mouseEventHandler);		
 		this.addMouseMotionListener(mouseEventHandler);
 	}
-	public void setShapeText(String shapeText) {
-		this.shapeText = shapeText;		
-		System.out.println(shapeText);
+	public void setShapeTool(GShapeTool shapeTool) {
+		this.shapeTool = shapeTool;		
 	}
 	
 	public void paint(Graphics graphics) {
 	}
 	private void draw(int x, int y) {
-		if (this.shapeText.equals("rectange")) {
-			Graphics graphics = this.getGraphics();
-			graphics.drawRect(x, y, 20, 30);	
-		} else if (this.shapeText.equals("oval")) {
-			Graphics graphics = this.getGraphics();
-			graphics.drawOval(x, y, 20, 30);	
-		} else if (this.shapeText.equals("line")) {
-			Graphics graphics = this.getGraphics();
-			graphics.drawLine(x, y, 20, 30);	
-		} else if (this.shapeText.equals("polygon")) {
-			Graphics graphics = this.getGraphics();
-		}
+		this.shapeTool.draw(this.getGraphics(), x, y, 20, 20);
 	}
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
