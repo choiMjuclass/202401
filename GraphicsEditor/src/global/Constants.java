@@ -1,23 +1,24 @@
 package global;
 
-import shapeTools.GRectangleTool;
-import shapeTools.GShapeTool;
+import shapeTools.GOval;
+import shapeTools.GRectangle;
+import shapeTools.GShape;
 
 public class Constants {
 	public enum EShapeButtons {
-		eRectangle("rectangle", new GRectangleTool()),
-		eOval("oval", new GRectangleTool()), 
-		eLine("line", new GRectangleTool()),
-		eLine1("line", new GRectangleTool()),
-		ePolygon("polygon", new GRectangleTool());
+		eRectangle("rectangle", new GRectangle()),
+		eOval("oval", new GOval()), 
+		eLine("line", new GRectangle()),
+		eLine1("line", new GRectangle()),
+		ePolygon("polygon", new GRectangle());
 		
 		private String text;
-		private GShapeTool shapeTool;
-		private EShapeButtons(String text, GShapeTool shapeTool) {
+		private GShape shapeTool;
+		private EShapeButtons(String text, GShape shapeTool) {
 			this.text = text;
 			this.shapeTool = shapeTool;
 		}
 		public String getText() { return this.text; }
-		public GShapeTool getShapeTool() { return this.shapeTool; }
+		public GShape getShapeTool() { return this.shapeTool; }
 	}
 }

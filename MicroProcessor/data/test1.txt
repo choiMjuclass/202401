@@ -1,0 +1,54 @@
+// machine instructions
+.data 
+512
+.stack 
+512
+.data 
+12
+// int main() {
+//	int sum;  	// ds+0
+//	int count; 	// ds+4
+//	int i;		// ds+8
+
+.code
+//	sum = 0;
+LDC #0
+STO (ds+0)
+
+//	count = 0;
+LDC #0
+STO (ds+4)
+
+//	i=0;
+LDC #0
+STO (ds+8)
+
+//	count = read();
+IRQ 2
+LDA (KeyboardBuffer)
+STO (ds+4)
+
+//	while (i<count) {
+LOOPSTART:
+LDA (ds+8)
+NOT
+ADD (ds+4)
+ZERO LOOPEXIT
+BZ LOOEXIT
+//		sum = sum + i
+LDA (sum)
+ADD (i)
+STO (sum)
+//		i = i+1;
+LDA (i)
+ADD #1
+STO (i)
+
+//	}
+JUMP LOOPSTART
+LOOPEXIT:
+//	println(sum);
+LDA (sum)
+STO (PrintBuffer)
+IRQ 3
+// }

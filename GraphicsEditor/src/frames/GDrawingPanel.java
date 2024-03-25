@@ -8,12 +8,12 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import shapeTools.GShapeTool;
+import shapeTools.GShape;
 
 public class GDrawingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private GShapeTool shapeTool;
+	private GShape shapeTool;
 	
 	public GDrawingPanel() {
 		this.setBackground(Color.gray);
@@ -21,34 +21,32 @@ public class GDrawingPanel extends JPanel {
 		this.addMouseListener(mouseEventHandler);		
 		this.addMouseMotionListener(mouseEventHandler);
 	}
-	public void setShapeTool(GShapeTool shapeTool) {
+	public void setShapeTool(GShape shapeTool) {
 		this.shapeTool = shapeTool;		
 	}
 	
 	public void paint(Graphics graphics) {
 	}
-	private void draw(int x, int y) {
-		this.shapeTool.draw(this.getGraphics(), x, y, 20, 20);
-	}
+
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-//			System.out.println(this.getEnclosingMethod());
+			System.out.println("mouseClicked");
 		}
 		@Override
 		public void mousePressed(MouseEvent e) {
-//			System.out.println(this.getClass().getEnclosingMethod());
-			draw(e.getX(), e.getY());
-		}
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			System.out.println(this.getClass().getEnclosingMethod());
+			System.out.println("mousePressed");
+			shapeTool.setP1(e.getX(), e.getY());
 		}
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			System.out.println(this.getClass().getEnclosingMethod());
-			draw(e.getX(), e.getY());
-			draw(e.getX(), e.getY());	
+			System.out.println("mouseDragged");
+			shapeTool.draw(getGraphics());
+			shapeTool.setP2(e.getX(), e.getY());
+		}
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			System.out.println("mouseReleased");
 		}
 
 		@Override

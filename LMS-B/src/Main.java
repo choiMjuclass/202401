@@ -17,8 +17,7 @@ public class Main {
 			System.out.println(tokens[count]);			
 			count = count + 1;
 			tokens[count] = System.in.read();
-		}
-		
+		}		
 		
 		int result = 0;
 		int poistion = 1;
@@ -29,9 +28,14 @@ public class Main {
 			poistion = poistion * 10;
 			count = count - 1;
 		}				
-		System.out.println(result);
+		System.out.println(result);		
 		
+		// Integer to ASCII
+		for (int i=0; i<tokens.length; i++) {
+			tokens[i] = 0;
+		}
 		
+		// 
 
 	}
 
