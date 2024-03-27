@@ -1,5 +1,6 @@
 package global;
 
+import shapeTools.GLine;
 import shapeTools.GOval;
 import shapeTools.GRectangle;
 import shapeTools.GShape;
@@ -8,8 +9,7 @@ public class Constants {
 	public enum EShapeButtons {
 		eRectangle("rectangle", new GRectangle()),
 		eOval("oval", new GOval()), 
-		eLine("line", new GRectangle()),
-		eLine1("line", new GRectangle()),
+		eLine("line", new GLine()),
 		ePolygon("polygon", new GRectangle());
 		
 		private String text;
