@@ -42,11 +42,21 @@ public class GDrawingPanel extends JPanel {
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			System.out.println("mouseClicked");
+			if (!bDrawing) {
+				currentShape = shapeTool.clone();
+				currentShape.setP1(e.getX(), e.getY());
+				bDrawing = true;
+			} else {
+				shapes.add(currentShape);
+				bDrawing = false;
+			}
 		}
 		@Override
 		public void mouseMoved(MouseEvent e) {
-		}
+			if (bDrawing) {
+				currentShape.setP2(e.getX(), e.getY());
+				currentShape.drag(getGraphics());
+			}		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
