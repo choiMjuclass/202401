@@ -10,7 +10,7 @@ public class Main {
 	}
 	private void run() {
 		this.microProcessor.run();
-	}
+	} 
 	private void finish() {
 		this.microProcessor.finish();
 	}

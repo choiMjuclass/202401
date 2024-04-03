@@ -6,7 +6,7 @@ public class MicroProcessor {
 	private Bus bus;
 	private CPU cpu;
 	private Memory memory;
-	
+	 
 	public MicroProcessor() {
 		// attributes
 		this.bPowerOn = true;

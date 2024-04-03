@@ -9,7 +9,7 @@ public class CPU {
 		eMove,
 		eAdd
 	}
-	
+	 
 	// components
 	enum ERegisters { 
 		eMAR,

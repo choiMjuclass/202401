@@ -10,7 +10,7 @@ public class Bus {
 	}
 	
 	public void initialize() {
-	}
+	} 
 
 	public int load(CPU.EDeviceId eDeviceId, int mAR) {
 		if (eDeviceId == CPU.EDeviceId.eMemory) {
