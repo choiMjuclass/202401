@@ -14,18 +14,24 @@ import shapeTools.GShape;
 public class GDrawingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private boolean bDrawing;
+	private enum EDrawingState {
+		eIdle,
+		eDrawing
+	}
+	private EDrawingState eDrawingState;
+	
 	private Vector<GShape> shapes;
 	private GShape shapeTool;
 	private GShape currentShape;
 	
 	public GDrawingPanel() {
+		
 		this.setBackground(Color.gray);
 		MouseEventHandler mouseEventHandler = new MouseEventHandler();
 		this.addMouseListener(mouseEventHandler);		
 		this.addMouseMotionListener(mouseEventHandler);
 		
-		this.bDrawing = false;
+		this.eDrawingState = EDrawingState.eIdle;
 		
 		this.shapes = new Vector<GShape>();
 	}
@@ -42,53 +48,39 @@ public class GDrawingPanel extends JPanel {
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if (!bDrawing) {
-				currentShape = shapeTool.clone();
-				currentShape.setP1(e.getX(), e.getY());
-				bDrawing = true;
-			} else {
-				shapes.add(currentShape);
-				bDrawing = false;
-			}
 		}
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			if (bDrawing) {
-				currentShape.setP2(e.getX(), e.getY());
-				currentShape.drag(getGraphics());
-			}		}
+		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			if (!bDrawing) {
+			if (eDrawingState == EDrawingState.eIdle) {
 				currentShape = shapeTool.clone();
 				currentShape.setP1(e.getX(), e.getY());
-				bDrawing = true;
+				eDrawingState = EDrawingState.eDrawing;
 			}
 		}
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (bDrawing) {
+			if (eDrawingState == EDrawingState.eDrawing) {
 				currentShape.setP2(e.getX(), e.getY());
 				currentShape.drag(getGraphics());
 			}
 		}
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if (bDrawing) {
+			if (eDrawingState == EDrawingState.eDrawing) {
 				shapes.add(currentShape);
-				bDrawing = false;
+				eDrawingState = EDrawingState.eIdle;
 			}
 		}
 
-
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			System.out.println("mousemouseEntered");
 		}
 		@Override
 		public void mouseExited(MouseEvent e) {
-			System.out.println("mousemouseExited");
 		}		
 	}
 
