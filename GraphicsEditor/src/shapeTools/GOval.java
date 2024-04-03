@@ -2,8 +2,11 @@ package shapeTools;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import shapeTools.GShape.EDrawingStyle;
+
 public class GOval extends GShape {
 	public GOval() {
+		super(EDrawingStyle.e2PStyle);
 	}	
 	public GOval clone() {
 		return new GOval();

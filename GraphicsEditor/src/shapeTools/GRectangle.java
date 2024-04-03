@@ -2,10 +2,13 @@ package shapeTools;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import shapeTools.GShape.EDrawingStyle;
+
 public class GRectangle extends GShape {
-	public GRectangle() {
-	}
 	
+	public GRectangle() {
+		super(EDrawingStyle.e2PStyle);		
+	}	
 	public GRectangle clone() {
 		return new GRectangle();
 	}

@@ -56,7 +56,6 @@ public class CPU {
 			int operand2 = get(ERegisters.eIR) & 0x0000FF00;
 			operand2 = operand2 >> 8;
 			move(ERegisters.values()[operand1], ERegisters.values()[operand2]);
-			
 		} else if (opCode == EOpCode.eAdd.ordinal()) {
 			
 		}

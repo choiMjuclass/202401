@@ -12,4 +12,5 @@ public class Campus {
 	}
 	public void initialize() {
 	}
-	// methods}
+	// methods
+}

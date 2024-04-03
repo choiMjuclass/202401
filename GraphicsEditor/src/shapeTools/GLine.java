@@ -3,11 +3,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class GLine extends GShape {
+	
 	public GLine() {
+		super(EDrawingStyle.e2PStyle);
 	}	
 	public GLine clone() {
 		return new GLine();
 	}
+	
 	@Override
 	public void drag(Graphics graphics) {
 		Graphics2D graphics2D = (Graphics2D) graphics;

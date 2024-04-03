@@ -10,13 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import shapeTools.GShape;
+import shapeTools.GShape.EDrawingStyle;
 
 public class GDrawingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private enum EDrawingState {
 		eIdle,
-		eDrawing
+		e2PState,
+		eNPState
 	}
 	private EDrawingState eDrawingState;
 	
@@ -45,6 +47,17 @@ public class GDrawingPanel extends JPanel {
 		}		
 	}
 
+	private void startDrawing(int x, int y) {
+		currentShape = shapeTool.clone();
+		currentShape.setP1(x, y);
+	}
+	private void keepDrawing(int x, int y) {
+		currentShape.setP2(x, y);
+		currentShape.drag(getGraphics());		
+	}
+	private void stopDrawing(int x, int y) {
+		shapes.add(currentShape);
+	}
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -56,22 +69,22 @@ public class GDrawingPanel extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if (eDrawingState == EDrawingState.eIdle) {
-				currentShape = shapeTool.clone();
-				currentShape.setP1(e.getX(), e.getY());
-				eDrawingState = EDrawingState.eDrawing;
+				if (shapeTool.getEDrawingStyle() == EDrawingStyle.e2PStyle) {
+					startDrawing(e.getX(), e.getY());
+					eDrawingState = EDrawingState.e2PState;
+				}
 			}
 		}
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (eDrawingState == EDrawingState.eDrawing) {
-				currentShape.setP2(e.getX(), e.getY());
-				currentShape.drag(getGraphics());
+			if (eDrawingState == EDrawingState.e2PState) {
+				keepDrawing(e.getX(), e.getY());
 			}
 		}
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if (eDrawingState == EDrawingState.eDrawing) {
-				shapes.add(currentShape);
+			if (eDrawingState == EDrawingState.e2PState) {
+				stopDrawing(e.getX(), e.getY());
 				eDrawingState = EDrawingState.eIdle;
 			}
 		}
