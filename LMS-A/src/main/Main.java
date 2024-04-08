@@ -1,3 +1,4 @@
+package main;
 public class Main {
 	// attributes
 	
@@ -18,11 +19,14 @@ public class Main {
 	}
 	
 	// methods
-	
+	private void run() {
+		this.lms.run();
+	}
 	
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.initialize();
+		main.run();
 	}
 
 
