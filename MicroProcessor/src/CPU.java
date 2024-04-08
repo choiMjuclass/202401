@@ -9,6 +9,21 @@ public class CPU {
 		eMove,
 		eAdd
 	}
+	public enum EStatus {
+		eZero(0xFE, 0x01, 0x01);
+		
+		private int nClear;
+		private int nSet;
+		private int nGet; 
+		private EStatus(int nClear, int nSet, int nGet) {
+			this.nClear = nClear;
+			this.nClear = nSet;
+			this.nGet = nGet;
+		}
+		public int getNClear() { return this.nClear; }
+		public int getNSet() { return this.nSet; }
+		public int getNGet() { return this.nGet; }
+	}
 	 
 	// components
 	enum ERegisters { 
@@ -16,7 +31,8 @@ public class CPU {
 		eMBR,
 		ePC,
 		eIR,
-		eAC
+		eAC,
+		eStatus
 	}	
 	int registers[] = new int[ERegisters.values().length];
 	
@@ -33,16 +49,36 @@ public class CPU {
 	public void initialize() {
 	}
 	
-	private void move(ERegisters eTarget, ERegisters eSource) {
-		registers[eTarget.ordinal()] = registers[eSource.ordinal()];
-	}
 	private int get(ERegisters eRegister) {
 		return registers[eRegister.ordinal()];
 	}
 	private void set(ERegisters eRegister, int value) {
 		registers[eRegister.ordinal()] = value;
 	}
+	
+	private void setZero(boolean bResult) {
+		if (bResult) {
+			this.registers[ERegisters.eStatus.ordinal()] 
+				= this.registers[ERegisters.eStatus.ordinal()] & EStatus.eZero.getNClear();
+		} else {
+			this.registers[ERegisters.eStatus.ordinal()] 
+					= this.registers[ERegisters.eStatus.ordinal()] | EStatus.eZero.getNSet();
+		}
+	}
+	private boolean getZero() {
+		return true;
+	}
+	private void setMinus(boolean bResult) {
+		
+	}
+	
+	// instructions
+	private void move(ERegisters eTarget, ERegisters eSource) {
+		registers[eTarget.ordinal()] = registers[eSource.ordinal()];
+	}
 
+	
+	// instruction execution cycle
 	private void fetch() {
 		move(ERegisters.eMAR, ERegisters.ePC);
 		set(ERegisters.eMBR, bus.load(EDeviceId.eMemory, get(ERegisters.eMAR)));
@@ -58,8 +94,7 @@ public class CPU {
 			move(ERegisters.values()[operand1], ERegisters.values()[operand2]);
 		} else if (opCode == EOpCode.eAdd.ordinal()) {
 			
-		}
-		
+		}		
 	}
 	private void execute() {
 	}
@@ -68,8 +103,6 @@ public class CPU {
 		this.fetch();
 		this.decode();
 		this.execute();
-		
-
 	}
 
 	public void finish() {

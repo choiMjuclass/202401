@@ -2,6 +2,7 @@ package global;
 
 import shapeTools.GLine;
 import shapeTools.GOval;
+import shapeTools.GPolygon;
 import shapeTools.GRectangle;
 import shapeTools.GShape;
 
@@ -10,7 +11,7 @@ public class Constants {
 		eRectangle("rectangle", new GRectangle()),
 		eOval("oval", new GOval()), 
 		eLine("line", new GLine()),
-		ePolygon("polygon", new GRectangle());
+		ePolygon("polygon", new GPolygon());
 		
 		private String text;
 		private GShape shapeTool;
@@ -21,4 +22,5 @@ public class Constants {
 		public String getText() { return this.text; }
 		public GShape getShapeTool() { return this.shapeTool; }
 	}
+	public final static int NUM_POINTS = 20; 
 }
