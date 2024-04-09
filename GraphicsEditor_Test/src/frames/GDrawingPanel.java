@@ -1,7 +1,6 @@
 package frames;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -44,7 +43,7 @@ public class GDrawingPanel extends JPanel {
 	
 	public void paint(Graphics graphics) {
 		for (GShape shape: shapes) {
-			shape.draw((Graphics2D)graphics);
+			shape.draw(graphics);
 		}		
 	}
 
@@ -53,19 +52,15 @@ public class GDrawingPanel extends JPanel {
 		currentShape.setOrigin(x, y);
 	}
 	private void keepDrawing(int x, int y) {
-		Graphics2D graphics2D = (Graphics2D) getGraphics();
-		graphics2D.setXORMode(graphics2D.getBackground());
-
-		currentShape.draw(graphics2D);				
 		currentShape.movePoint(x, y);
-		currentShape.draw(graphics2D);		
+		currentShape.drag(getGraphics());		
 	}
 	private void ContinueDrawing(int x, int y) {
 		currentShape.addPoint(x, y);
 	}
 
 	private void stopDrawing(int x, int y) {
-//		currentShape.addPoint(x, y);
+		currentShape.addPoint(x, y);
 		shapes.add(currentShape);
 	}
 	

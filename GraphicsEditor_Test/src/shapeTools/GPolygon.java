@@ -22,20 +22,20 @@ public class GPolygon extends GShape {
 		return new GPolygon();
 	}
 
-//	@Override
-//	public void drag(Graphics2D graphics) {
-//		Graphics2D graphics2D = (Graphics2D) graphics;
-//		graphics2D.setXORMode(graphics2D.getBackground());
-//		// erase old shape 
+	@Override
+	public void drag(Graphics graphics) {
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setXORMode(graphics2D.getBackground());
+		// erase old shape 
+		graphics.drawPolyline(xPoints, yPoints, nPoints);
+		// draw new shape
 //		graphics.drawPolyline(xPoints, yPoints, nPoints);
-//		// draw new shape
-////		graphics.drawPolyline(xPoints, yPoints, nPoints);
-//	}
+	}
 
 	@Override
-	public void draw(Graphics2D graphics) {
+	public void draw(Graphics graphics) {
 		// TODO Auto-generated method stub
-		graphics.drawPolyline(xPoints, yPoints, nPoints);
+		graphics.drawPolygon(xPoints, yPoints, nPoints);
 	}
 	@Override
 	public void setOrigin(int x, int y) {

@@ -1,6 +1,5 @@
 package shapeTools;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 public abstract class GShape {
 	public enum EDrawingStyle {
@@ -26,8 +25,8 @@ public abstract class GShape {
 	}
 	
 	public abstract GShape clone();
-//	public abstract void drag(Graphics2D graphics);
-	public abstract void draw(Graphics2D graphics);
+	public abstract void drag(Graphics graphics);
+	public abstract void draw(Graphics graphics);
 	
 	public void setOrigin(int x1, int y1) {
 		this.x1 = x1;
