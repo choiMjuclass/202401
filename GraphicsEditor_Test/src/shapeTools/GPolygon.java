@@ -26,8 +26,10 @@ public class GPolygon extends GShape {
 	public void drag(Graphics graphics) {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setXORMode(graphics2D.getBackground());
+		graphics.drawLine(xPoints[nPoints-1], yPoints[nPoints-1], ox2, oy2);
+		graphics.drawLine(xPoints[nPoints-1], yPoints[nPoints-1], xPoints[nPoints], yPoints[nPoints]);
 		// erase old shape 
-		graphics.drawPolyline(xPoints, yPoints, nPoints);
+//		graphics.drawPolyline(xPoints, yPoints, nPoints);
 		// draw new shape
 //		graphics.drawPolyline(xPoints, yPoints, nPoints);
 	}
@@ -48,6 +50,8 @@ public class GPolygon extends GShape {
 	}
 	@Override
 	public void movePoint(int x, int y) {
+		this.ox2 = this.xPoints[nPoints];
+		this.oy2 = this.yPoints[nPoints];
 		this.xPoints[nPoints] = x;
 		this.yPoints[nPoints] = y;
 	}
