@@ -12,4 +12,7 @@ public class GMenuBar extends JMenuBar {
 		this.fileMenu = new GFileMenu("file");
 		this.add(this.fileMenu);
 	}
+
+	public void initialize() {
+	}
 }

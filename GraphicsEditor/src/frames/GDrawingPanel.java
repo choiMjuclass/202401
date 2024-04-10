@@ -37,6 +37,10 @@ public class GDrawingPanel extends JPanel {
 		
 		this.shapes = new Vector<GShape>();
 	}
+	public void intitialize() {
+		
+	}
+	
 	public void setShapeTool(GShape shapeTool) {
 		this.shapeTool = shapeTool;		
 	}
@@ -123,6 +127,8 @@ public class GDrawingPanel extends JPanel {
 		public void mouseExited(MouseEvent e) {
 		}		
 	}
+
+
 
 
 }

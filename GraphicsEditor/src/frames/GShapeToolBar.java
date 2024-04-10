@@ -19,4 +19,10 @@ public class GShapeToolBar extends JToolBar {
 			buttonGroup.add(button);
 		}
 	}
+
+	public void intitialize() {
+		JRadioButton defaultButton 
+		= (JRadioButton)(this.getComponent(EShapeButtons.eRectangle.ordinal()));
+		defaultButton.doClick();
+	}
 }

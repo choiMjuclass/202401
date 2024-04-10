@@ -17,9 +17,11 @@ public class GMainFrame extends JFrame {
 	
 	// constructor
 	public GMainFrame() {
+		// set attributes
 		this.setSize(400, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// create components
 //		LayoutManager layoutManager = new FlowLayout();
 //		LayoutManager layoutManager = new CardLayout();
 		LayoutManager layoutManager = new BorderLayout();
@@ -35,6 +37,15 @@ public class GMainFrame extends JFrame {
 		
 		this.drawingPanel = new GDrawingPanel();
 		this.add(drawingPanel, BorderLayout.CENTER);
+		
+		// 
+	}
+	
+	public void initialize() {
+		this.menuBar.initialize();
+		this.shapeToolBar.intitialize();
+		this.drawingPanel.intitialize();
+		
 	}
 	
 	public class ShapeActionHandler implements ActionListener {;
@@ -45,4 +56,6 @@ public class GMainFrame extends JFrame {
 		}
 		
 	}
+
+
 }

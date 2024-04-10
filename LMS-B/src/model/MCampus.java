@@ -1,6 +1,6 @@
 package model;
 
-public class Campus {
+public class MCampus {
 	// attributes
 	
 	// components
@@ -8,9 +8,13 @@ public class Campus {
 	// associations
 	
 	// constructors
-	public Campus() {
+	public MCampus() {
 	}
 	public void initialize() {
 	}
 	// methods
+	public void getList() {
+		// TODO Auto-generated method stub
+		
+	}
 }

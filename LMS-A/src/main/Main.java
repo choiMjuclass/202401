@@ -3,24 +3,23 @@ public class Main {
 	// attributes
 	
 	// components
-	private LMS lms;
+	private VMainFrame vMainFrame;
 	
 	// constructor
 	public Main() {
 		// attributes
 		
 		// component
-		this.lms = new LMS();
+		this.vMainFrame = new VMainFrame();
+		this.vMainFrame.setVisible(true);
 		
 		// associations
 	}
 	private void initialize() {
-		this.lms.initialize();
 	}
 	
 	// methods
 	private void run() {
-		this.lms.run();
 	}
 	
 	public static void main(String[] args) {
