@@ -13,8 +13,8 @@ import shapeTools.GShape;
 import shapeTools.GShape.EDrawingStyle;
 
 public class GDrawingPanel extends JPanel {
+	// attributes
 	private static final long serialVersionUID = 1L;
-	
 	private enum EDrawingState {
 		eIdle,
 		e2PState,
@@ -22,10 +22,12 @@ public class GDrawingPanel extends JPanel {
 	}
 	private EDrawingState eDrawingState;
 	
+	// components
 	private Vector<GShape> shapes;
 	private GShape shapeTool;
 	private GShape currentShape;
 	
+	// constructors
 	public GDrawingPanel() {
 		
 		this.setBackground(Color.gray);
@@ -38,11 +40,16 @@ public class GDrawingPanel extends JPanel {
 		this.shapes = new Vector<GShape>();
 	}
 	public void intitialize() {
-		
 	}
 	
+	// setters and getters	
 	public void setShapeTool(GShape shapeTool) {
 		this.shapeTool = shapeTool;		
+	}
+	
+	// methods
+	void save() {
+		
 	}
 	
 	public void paint(Graphics graphics) {

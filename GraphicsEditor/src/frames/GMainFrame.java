@@ -11,6 +11,9 @@ import global.Constants.EShapeButtons;
 public class GMainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
+	// attributes
+	
+	// components
 	private GMenuBar menuBar;
 	private GShapeToolBar shapeToolBar;
 	private GDrawingPanel drawingPanel;
@@ -41,6 +44,7 @@ public class GMainFrame extends JFrame {
 		// 
 	}
 	
+	// methods
 	public void initialize() {
 		this.menuBar.initialize();
 		this.shapeToolBar.intitialize();
