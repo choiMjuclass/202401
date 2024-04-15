@@ -10,6 +10,9 @@ public class VSugangSincheong extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private CCampus cCampus;
+	
+	private VCampus vCampus;
+	
 	public VSugangSincheong() {
 		this.setBackground(Color.CYAN);
 		

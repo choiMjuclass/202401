@@ -1,4 +1,7 @@
 package main;
+
+import view.VMainFrame;
+
 public class Main {
 	// attributes
 	

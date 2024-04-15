@@ -1,21 +1,15 @@
 package view;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
-
-import control.CCampus;
 
 public class VSugangSincheong extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private CCampus cCampus;
+	private VCampus vCampus;
+	
 	public VSugangSincheong() {
-		this.setBackground(Color.RED);
-		
-		this.cCampus = new CCampus();
-		this.cCampus.getList();
-		
+		this.vCampus = new VCampus();
+		this.add(this.vCampus);		
 	}
 	public void initialize() {
 		
