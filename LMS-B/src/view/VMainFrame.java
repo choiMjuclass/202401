@@ -4,9 +4,8 @@ import java.awt.HeadlessException;
 import javax.swing.JFrame;
 
 public class VMainFrame extends JFrame {
-	private static final long serialVersionUID = 1L;
-	
 	// attributes
+	private static final long serialVersionUID = 1L;	
 	
 	// components
 	private VSugangSincheong vSugangSincheong;

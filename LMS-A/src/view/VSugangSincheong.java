@@ -1,23 +1,20 @@
 package view;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
-
-import control.CCampus;
+import javax.swing.JScrollPane;
 
 public class VSugangSincheong extends JPanel {
+	// attributes
 	private static final long serialVersionUID = 1L;
-	
-	private CCampus cCampus;
-	
+	// components
 	private VCampus vCampus;
 	
+	// methods
 	public VSugangSincheong() {
-		this.setBackground(Color.CYAN);
+		this.vCampus = new VCampus();
+		JScrollPane scrollPane = new JScrollPane(this.vCampus);
+		this.add(scrollPane);
 		
-		this.cCampus = new CCampus();
-		this.cCampus.getList();
 	}
 	public void initialize() {
 	}
