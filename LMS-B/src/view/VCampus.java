@@ -3,6 +3,8 @@ package view;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.CCampus;
+
 public class VCampus extends JTable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,5 +21,8 @@ public class VCampus extends JTable {
 		this.model = new DefaultTableModel(data, header);
 		
 		this.setModel(model);
+		
+		CCampus cCampus = new CCampus();
+		cCampus.getList();
 	}
 }

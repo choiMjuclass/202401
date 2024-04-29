@@ -1,8 +1,9 @@
 package view;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import control.CCampus;
 
 public class VCampus extends JTable {
 	// attributes
@@ -24,6 +25,9 @@ public class VCampus extends JTable {
 		this.setModel(this.model);	
 		
 
+		CCampus cCampus = new CCampus();
+		cCampus.getList();
+		
 //		this.model.addColumn(header);
 //		this.model.addRow(data);
 	}

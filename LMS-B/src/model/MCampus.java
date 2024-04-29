@@ -1,5 +1,9 @@
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class MCampus {
 	// attributes
 	
@@ -14,7 +18,17 @@ public class MCampus {
 	}
 	// methods
 	public void getList() {
-		// TODO Auto-generated method stub
-		
+		try {
+			File file = new File("data/root");
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNext()) {
+				String word = scanner.next();
+			}
+			scanner.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 }
