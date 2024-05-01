@@ -1,9 +1,12 @@
 package view;
 
+import java.util.Vector;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.CCampus;
+import model.MCampus;
 
 public class VCampus extends JTable {
 	// attributes
@@ -14,19 +17,21 @@ public class VCampus extends JTable {
 	// methods
 	public VCampus() {
 		String header[] = {
-				"아이디, 캠퍼스"	
+				"아이디", "캠퍼스"	
 			};
-		Object[][] data = {
-				{"0", "서울"},
-				{"1", "용인"}
-		};
-			
-		this.model = new DefaultTableModel(data, header);
+		this.model = new DefaultTableModel(null, header);
 		this.setModel(this.model);	
 		
 
 		CCampus cCampus = new CCampus();
-		cCampus.getList();
+		Vector<MCampus> mCampusList = cCampus.getList();
+		
+		for (MCampus mCampus: mCampusList) {
+			String[] row = new String[2];
+			row[0] = String.valueOf(mCampus.getId());
+			row[1] = mCampus.getName();
+			this.model.addRow(row);
+		}
 		
 //		this.model.addColumn(header);
 //		this.model.addRow(data);

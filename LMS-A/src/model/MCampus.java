@@ -1,24 +1,20 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class MCampus {
 	
-	public MCampus() {
-	}
+	private int id;
+	private String name;
+	private String fileName;
+	
+	public MCampus() {}
 
-	public void getList() {
-		try {
-			File file = new File("data/root");
-			Scanner scanner = new Scanner(file);
-			String word = scanner.next();
-			scanner.close();			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	public int getId() { return id; }
+	public void setId(int id) { this.id = id; }
 
+	public String getName() {return name; }
+	public void setName(String name) { this.name = name; }
+
+	public String getFileName() { return fileName; }
+	public void setFileName(String fileName) { this.fileName = fileName;}
+	
 }

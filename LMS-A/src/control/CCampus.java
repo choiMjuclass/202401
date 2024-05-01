@@ -1,13 +1,17 @@
 package control;
 
+import java.util.Vector;
+
+import model.DAOCampus;
 import model.MCampus;
 
 public class CCampus {
 
-	private MCampus mCampus;
-	public void getList() {
-		this.mCampus = new MCampus();
-		this.mCampus.getList();
+	private DAOCampus daoCampus;
+	public Vector<MCampus> getList() {
+		this.daoCampus = new DAOCampus();
+		Vector<MCampus> mCampusList = this.daoCampus.getList();
+		return mCampusList;
 	}
 
 }
