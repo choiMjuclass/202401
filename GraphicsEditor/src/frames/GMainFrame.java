@@ -41,7 +41,8 @@ public class GMainFrame extends JFrame {
 		this.drawingPanel = new GDrawingPanel();
 		this.add(drawingPanel, BorderLayout.CENTER);
 		
-		// 
+		// associate
+		this.menuBar.associate(this.drawingPanel);
 	}
 	
 	// methods

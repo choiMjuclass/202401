@@ -16,12 +16,9 @@ public class VCampus extends JTable {
 	private DefaultTableModel model;
 	// methods
 	public VCampus() {
-		String header[] = {
-				"아이디", "캠퍼스"	
-			};
+		String header[] = {	"아이디", "캠퍼스" };
 		this.model = new DefaultTableModel(null, header);
-		this.setModel(this.model);	
-		
+		this.setModel(this.model);		
 
 		CCampus cCampus = new CCampus();
 		Vector<MCampus> mCampusList = cCampus.getList();

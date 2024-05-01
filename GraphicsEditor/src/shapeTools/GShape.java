@@ -1,7 +1,10 @@
 package shapeTools;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public abstract class GShape {
+public abstract class GShape implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public enum EDrawingStyle {
 		e2PStyle,
 		eNPStyle

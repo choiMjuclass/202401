@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -48,8 +53,20 @@ public class GDrawingPanel extends JPanel {
 	}
 	
 	// methods
-	void save() {
-		
+	public void open() {
+	}
+	public void save() {
+		try {
+			File file = new File("ouput");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+					new BufferedOutputStream(
+							new FileOutputStream(file)));
+			objectOutputStream.writeObject(this.shapes);
+			objectOutputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+
 	}
 	
 	public void paint(Graphics graphics) {

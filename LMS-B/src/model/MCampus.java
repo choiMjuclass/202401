@@ -1,34 +1,19 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
+// components
 public class MCampus {
-	// attributes
+	private int id;
+	private String name;
+	private String link;	
 	
-	// components
+	public MCampus() {}
 	
-	// associations
+	public int getId() {	return id; }
+	public void setId(int id) { this.id = id; }
 	
-	// constructors
-	public MCampus() {
-	}
-	public void initialize() {
-	}
-	// methods
-	public void getList() {
-		try {
-			File file = new File("data/root");
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				String word = scanner.next();
-			}
-			scanner.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	
+	public String getLink() { return link; }
+	public void setLink(String link) { this.link = link; }		
 }

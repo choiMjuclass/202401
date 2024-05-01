@@ -8,11 +8,19 @@ public class GMenuBar extends JMenuBar {
 
 	public GFileMenu fileMenu;
 	
+	private GDrawingPanel drawingPanel;
+	
 	public GMenuBar() {
 		this.fileMenu = new GFileMenu("file");
 		this.add(this.fileMenu);
 	}
-
+	
+	public void associate(GDrawingPanel drawingPanel) {
+		this.drawingPanel = drawingPanel;
+		
+		this.fileMenu.assoicate(this.drawingPanel);
+	}
+	
 	public void initialize() {
 	}
 }
