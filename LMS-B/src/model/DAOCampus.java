@@ -17,7 +17,7 @@ public class DAOCampus {	// attributes
 	public Vector<MCampus> getList() {
 		Vector<MCampus> mCampusList = new Vector<MCampus>();
 		try {
-			File file = new File("data/root.txt");
+			File file = new File("data/root");
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
 				// deserialize

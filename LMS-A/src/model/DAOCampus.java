@@ -13,7 +13,7 @@ public class DAOCampus {
 	public Vector<MCampus> getList() {
 		Vector<MCampus> campusList = new Vector<MCampus>();
 		try {
-			File file = new File("data/root.txt");
+			File file = new File("data/root");
 			Scanner scanner = new Scanner(file);
 			String line = null;
 			while (scanner.hasNext()) {
