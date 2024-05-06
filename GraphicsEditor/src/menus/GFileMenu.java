@@ -26,7 +26,7 @@ public class GFileMenu extends JMenu {
 		this.add(menuItemOpen);
 		
 		JMenuItem menuItemSave = new JMenuItem("save");
-		menuItemOpen.setActionCommand("save");
+		menuItemSave.setActionCommand("save");
 		menuItemSave.addActionListener(actionHandler);
 		this.add(menuItemSave);
 	}

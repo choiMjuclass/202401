@@ -4,10 +4,13 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
 
@@ -54,6 +57,17 @@ public class GDrawingPanel extends JPanel {
 	
 	// methods
 	public void open() {
+			try {
+				File file = new File("ouput");
+				ObjectInputStream objectInputStream = new ObjectInputStream(
+						new BufferedInputStream(new FileInputStream(file)));
+				this.shapes = (Vector<GShape>)objectInputStream.readObject();
+				objectInputStream.close();
+				this.repaint();
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	public void save() {
 		try {
