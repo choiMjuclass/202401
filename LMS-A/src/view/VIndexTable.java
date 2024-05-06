@@ -2,20 +2,22 @@ package view;
 
 import java.util.Vector;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.CCampus;
 import model.MCampus;
 
-public class VCampus extends JTable {
+public class VIndexTable extends JTable {
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
 	// components
 	private DefaultTableModel model;
 	// methods
-	public VCampus() {
+	public VIndexTable() {
+		
 		String header[] = {	"아이디", "캠퍼스" };
 		this.model = new DefaultTableModel(null, header);
 		this.setModel(this.model);		
