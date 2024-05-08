@@ -10,15 +10,12 @@ public class Main {
 	
 	// constructor
 	public Main() {
-		// attributes
-		
 		// component
 		this.vMainFrame = new VMainFrame();
 		this.vMainFrame.setVisible(true);
-		
-		// associations
 	}
 	private void initialize() {
+		this.vMainFrame.initialize();
 	}
 	
 	// methods

@@ -19,6 +19,9 @@ public class VMainFrame extends JFrame {
 		this.vSugangSincheong = new VSugangSincheong();
 		this.add(vSugangSincheong);
 	}
+	public void initialize() {
+		this.vSugangSincheong.initialize();		
+	}
 	
 	// methods
 }

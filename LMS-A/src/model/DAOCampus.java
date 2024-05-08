@@ -10,10 +10,10 @@ public class DAOCampus {
 	public DAOCampus() {
 	}
 
-	public Vector<MCampus> getList() {
+	public Vector<MCampus> getList(String fileName) {
 		Vector<MCampus> campusList = new Vector<MCampus>();
 		try {
-			File file = new File("data/root");
+			File file = new File("data/"+fileName);
 			Scanner scanner = new Scanner(file);
 			String line = null;
 			while (scanner.hasNext()) {
