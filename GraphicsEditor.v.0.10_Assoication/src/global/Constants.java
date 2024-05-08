@@ -23,4 +23,22 @@ public class Constants {
 		public GShape getShapeTool() { return this.shapeTool; }
 	}
 	public final static int NUM_POINTS = 20; 
+	
+	public static class GMainFrame {
+		public final static int WIDTH = 400;
+		public final static int HEIGHT = 600;
+	}
+	
+	public static class GMenuBar {
+		public enum EMemu {
+			eFile("파일"),
+			eEdit("편집");
+			
+			private String text;
+			private EMemu(String text) {
+				this.text = text;
+			}
+			public String getText() { return this.text; }
+		}
+	}
 }

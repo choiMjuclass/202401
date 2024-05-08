@@ -16,12 +16,17 @@ public class VIndexTable extends JScrollPane {
 	private DefaultTableModel model;
 	
 	public VIndexTable() {
+		// components
+		// table
 		this.table = new JTable();
-		
+		this.setViewportView(this.table);
+		// model
 		String[] header = {"아이디", "캠퍼스"};	
-		this.model = new DefaultTableModel(null, header);		
+		this.model = new DefaultTableModel(null, header);
+		// associate
 		this.table.setModel(model);
 		
+		// get data
 		CCampus cCampus = new CCampus();
 		Vector<MCampus> mCampusList = cCampus.getList();
 		for (MCampus mCampus: mCampusList) {
@@ -32,6 +37,5 @@ public class VIndexTable extends JScrollPane {
 			this.model.addRow(row);
 		}
 		
-		this.add(this.table);
 	}
 }

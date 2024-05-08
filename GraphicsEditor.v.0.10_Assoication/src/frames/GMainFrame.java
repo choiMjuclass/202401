@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import global.Constants;
 import global.Constants.EShapeButtons;
 
 public class GMainFrame extends JFrame {
@@ -15,18 +16,17 @@ public class GMainFrame extends JFrame {
 	
 	// components
 	private GMenuBar menuBar;
-	private GShapeToolBar shapeToolBar;
-	
+	private GShapeToolBar shapeToolBar;	
 	private GDrawingPanel drawingPanel;
 	
 	// constructor
 	public GMainFrame() {
 		// set attributes
-		this.setSize(400, 600);
+		
+		this.setSize(Constants.GMainFrame.WIDTH, Constants.GMainFrame.HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// create components
-
 		LayoutManager layoutManager = new BorderLayout();
 		this.setLayout(layoutManager);
 	
@@ -48,8 +48,6 @@ public class GMainFrame extends JFrame {
 	public void initialize() {
 		this.menuBar.initialize();
 		this.shapeToolBar.intitialize();
-		this.drawingPanel.intitialize();
-		
+		this.drawingPanel.intitialize();		
 	}
-
 }
