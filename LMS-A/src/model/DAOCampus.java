@@ -10,8 +10,8 @@ public class DAOCampus {
 	public DAOCampus() {
 	}
 
-	public Vector<MCampus> getList(String fileName) {
-		Vector<MCampus> campusList = new Vector<MCampus>();
+	public Vector<MIndex> getList(String fileName) {
+		Vector<MIndex> campusList = new Vector<MIndex>();
 		try {
 			File file = new File("data/"+fileName);
 			Scanner scanner = new Scanner(file);
@@ -19,7 +19,7 @@ public class DAOCampus {
 			while (scanner.hasNext()) {
 				line = scanner.nextLine();
 				
-				MCampus mCampus = new MCampus();
+				MIndex mCampus = new MIndex();
 				String[] wordList = line.split(" ");
 				mCampus.setId(Integer.parseInt(wordList[0]));
 				mCampus.setName(wordList[1]);

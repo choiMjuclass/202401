@@ -1,13 +1,15 @@
 package view;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.CCampus;
-import model.MCampus;
+import control.CIndex;
+import model.MIndex;
 
 public class VIndexTable extends JScrollPane {
 	// attributes
@@ -16,11 +18,19 @@ public class VIndexTable extends JScrollPane {
 	// components
 	private JTable table;
 	private DefaultTableModel model;
+	
+	// associations
+	private VIndexTable next;	
+	public void setNext(VIndexTable next) { this.next = next; }
+	
 	// methods
 	public VIndexTable() {
 		// generate Table as a Component
 		this.table = new JTable();
 		this.setViewportView(this.table);
+		
+		MouseHandler mouseHandler = new MouseHandler();
+		this.table.addMouseListener(mouseHandler);
 		
 		// associate the table with a Model
 		String header[] = {	"아이디", "캠퍼스" };
@@ -30,15 +40,47 @@ public class VIndexTable extends JScrollPane {
 	
 	public void show(String fileName) {
 		// get data from CCampus
-		CCampus cCampus = new CCampus();
-		Vector<MCampus> mCampusList = cCampus.getList(fileName);
+		CIndex cIndex = new CIndex();
+		Vector<MIndex> mIndexList = cIndex.getList(fileName+".txt");
 		// set data to Model
-		for (MCampus mCampus: mCampusList) {
+		for (MIndex mIndex: mIndexList) {
 			String[] row = new String[2];
-			row[0] = String.valueOf(mCampus.getId());
-			row[1] = mCampus.getName();
+			row[0] = String.valueOf(mIndex.getId());
+			row[1] = mIndex.getName();
 			this.model.addRow(row);
-		}		this.updateUI();
+		}		
+		this.updateUI();
+		
+		if (this.next != null) {
+			this.next.show(mIndexList.get(0).getFileName());
+		}
+	}
+	
+	private void showNext(int selectedIndex) {
+		if (this.next != null) {
+			this.next.show(mIndexList.get(0).getFileName());
+		}
+	}
+	
+	private class MouseHandler implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			showNext(table.getSelectedRow());
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+		}
+		@Override
+		public void mouseReleased(MouseEvent e) {
+		}
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
 	}
 
 }

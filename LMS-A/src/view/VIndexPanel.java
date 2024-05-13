@@ -24,6 +24,9 @@ public class VIndexPanel extends JPanel {
 		
 		this.vDepartment = new VIndexTable();
 		this.add(vDepartment);
+		
+		this.vCampus.setNext(this.vCollege);
+		this.vCollege.setNext(this.vDepartment);
 	}
 
 	public void initialize() {
