@@ -18,3 +18,5 @@
 /HeaderSegment.class
 /CodeSegment.class
 /DataSegment.class
+/DataSegment$Symbol.class
+/Instruction.class

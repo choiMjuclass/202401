@@ -8,12 +8,12 @@ public class Parser extends Node {
 	}
 	
 	@Override
-	public Node parse() throws Exception {
+	public String parse(String token) throws Exception {
 		// TODO Auto-generated method stub
-		String token = this.lexicalAnalyzer.getToken();
+		token = this.lexicalAnalyzer.getToken();
 		if (token.equals(EKeyword.eProgram.getText())) {
 			this.program = new Program(this.lexicalAnalyzer);
-			this.program.parse();
+			this.program.parse(token);
 		} 
 		throw new Exception();
 	}

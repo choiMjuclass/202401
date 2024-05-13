@@ -7,9 +7,13 @@ public class CodeSegment extends Node {
 	}
 
 	@Override
-	public String parse() throws Exception {
+	public String parse(String token) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		String command = lexicalAnalyzer.getToken();
+		while (!command.equals(EKeyword.eEnd.getText())) {
+			Instruction instruction = new Instruction(lexicalAnalyzer);
+			command = instruction.parse(command);
+		}		
+		return command;
 	}
-
 }

@@ -1,15 +1,38 @@
+import java.util.Vector;
 
 public class DataSegment extends Node {
 
+	public class Symbol {
+		private String name;
+		private int size;
+		
+		public Symbol(String name, int size) {
+			this.name = name;
+			this.size = size;
+		}
+		public String getName() {return name;}
+		public int getSize() {return size;}
+	}
+	private Vector<Symbol> symbolTable;
+	
 	public DataSegment(LexicalAnalyzer lexicalAnalyzer) {
 		super(lexicalAnalyzer);
-		// TODO Auto-generated constructor stub
+		this.symbolTable = new Vector<Symbol>();
 	}
 
 	@Override
-	public String parse() throws Exception {
+	public String parse(String token) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		String name = lexicalAnalyzer.getToken();
+		while (!name.equals(EKeyword.eCode.getText())) {
+			int size = Integer.parseInt(lexicalAnalyzer.getToken());
+			
+			Symbol symbol = new Symbol(name, size);
+			this.symbolTable.add(symbol);
+			
+			name = lexicalAnalyzer.getToken();
+		}		
+		return name;
 	}
 
 }

@@ -11,7 +11,7 @@ public class Assembler {
 	// methods
 	public void run() {	
 		try {
-			Program program = (Program) this.parser.parse();
+			this.parser.parse(null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

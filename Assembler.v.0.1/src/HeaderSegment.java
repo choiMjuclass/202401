@@ -10,7 +10,7 @@ public class HeaderSegment extends Node {
 	}
 
 	@Override
-	public String parse() throws Exception {
+	public String parse(String token) throws Exception {
 		// TODO Auto-generated method stub
 		String keyword = lexicalAnalyzer.getToken();
 		while (!keyword.equals(EKeyword.eData.getText())) {
@@ -24,7 +24,7 @@ public class HeaderSegment extends Node {
 			}
 			keyword = lexicalAnalyzer.getToken();
 		}		
-		return null;
+		return keyword;
 	}
 
 }
