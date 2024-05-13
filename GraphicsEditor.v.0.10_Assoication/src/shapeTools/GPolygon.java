@@ -7,6 +7,7 @@ import global.Constants;
 
 public class GPolygon extends GShape {
 
+	private static final long serialVersionUID = 1L;
 	private int xPoints[];
 	private int yPoints[];
 	private int nPoints;

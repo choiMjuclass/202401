@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import shapeTools.GShape;
+import shapeTools.GShape.EAnchor;
 import shapeTools.GShape.EDrawingStyle;
 
 public class GDrawingPanel extends JPanel {
@@ -29,6 +30,13 @@ public class GDrawingPanel extends JPanel {
 		eNPState
 	}
 	private EDrawingState eDrawingState;
+	private enum ETransformation {
+		eDraw,
+		eMove,
+		eResize,
+		eRotate
+	}
+	private ETransformation eTransformation;
 	
 	// components
 	private Vector<GShape> shapes;
@@ -37,14 +45,15 @@ public class GDrawingPanel extends JPanel {
 	
 	// constructors
 	public GDrawingPanel() {
-		
+		// attributes
 		this.setBackground(Color.gray);
+		this.eDrawingState = EDrawingState.eIdle;
+		this.eTransformation = null;
+		// components
 		MouseEventHandler mouseEventHandler = new MouseEventHandler();
 		this.addMouseListener(mouseEventHandler);		
 		this.addMouseMotionListener(mouseEventHandler);
-		
-		this.eDrawingState = EDrawingState.eIdle;
-		
+		// dynamic components
 		this.shapes = new Vector<GShape>();
 	}
 	public void intitialize() {
@@ -81,28 +90,46 @@ public class GDrawingPanel extends JPanel {
 		currentShape.addPoint(x, y);
 		shapes.add(currentShape);
 	}
+	private EAnchor onShape(int x, int y) {
+		EAnchor eAnchor = null;
+		for (GShape shape: this.shapes) {
+			eAnchor = shape.onShape(x, y);
+			if (eAnchor != null) {
+				break;
+			}
+		}
+		return eAnchor;		
+	}
 	
 	private class MouseEventHandler implements MouseListener, MouseMotionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (e.getClickCount() == 1) {
-				if (eDrawingState == EDrawingState.eIdle) {
-					if (shapeTool.getEDrawingStyle() == EDrawingStyle.eNPStyle) {
-						startDrawing(e.getX(), e.getY());
-						eDrawingState = EDrawingState.eNPState;
-					}
-				} else if (eDrawingState == EDrawingState.eNPState) {
-					ContinueDrawing(e.getX(), e.getY());
-					eDrawingState = EDrawingState.eNPState;
-				}		
+				mouse1Clicked(e);
 			} else if (e.getClickCount() == 2) {
-				if (eDrawingState == EDrawingState.eNPState) {
-					stopDrawing(e.getX(), e.getY());
-					eDrawingState = EDrawingState.eIdle;
-				}		
+				mouse2Clicked(e);
 			}
+		}
+		
+		private void mouse1Clicked(MouseEvent e) {
+			if (eDrawingState == EDrawingState.eIdle) {
+				if (shapeTool.getEDrawingStyle() == EDrawingStyle.eNPStyle) {
+					startDrawing(e.getX(), e.getY());
+					eDrawingState = EDrawingState.eNPState;
+				}
+			} else if (eDrawingState == EDrawingState.eNPState) {
+				ContinueDrawing(e.getX(), e.getY());
+				eDrawingState = EDrawingState.eNPState;
+			}			
+		}
+		private void mouse2Clicked(MouseEvent e) {
+			if (eDrawingState == EDrawingState.eNPState) {
+				stopDrawing(e.getX(), e.getY());
+				eDrawingState = EDrawingState.eIdle;
+			}		
 
 		}
+
 		@Override
 		public void mouseMoved(MouseEvent e) {
 			if (eDrawingState == EDrawingState.eNPState) {
@@ -114,9 +141,14 @@ public class GDrawingPanel extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if (eDrawingState == EDrawingState.eIdle) {
-				if (shapeTool.getEDrawingStyle() == EDrawingStyle.e2PStyle) {
-					startDrawing(e.getX(), e.getY());
-					eDrawingState = EDrawingState.e2PState;
+				if (onShape(e.getX(), e.getY()) == null) {
+					if (shapeTool.getEDrawingStyle() == EDrawingStyle.e2PStyle) {
+						startDrawing(e.getX(), e.getY());
+						eDrawingState = EDrawingState.e2PState;
+					}
+				} else {
+					// transformation
+					//eTransformation = ETransformation.
 				}
 			}
 		}

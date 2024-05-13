@@ -9,6 +9,11 @@ public abstract class GShape implements Serializable {
 		e2PStyle,
 		eNPStyle
 	}
+	public enum EAnchor {
+		eMove,
+		eResize,
+		eRotate		
+	}
 	private EDrawingStyle eDrawingStyle;	
 	protected int x1, y1, x2, y2, ox2, oy2;
 	
@@ -50,5 +55,9 @@ public abstract class GShape implements Serializable {
 	public void addPoint(int x2, int y2) {
 		this.x2 = x2;
 		this.y2 = y2;
+	}
+
+	public EAnchor onShape(int x, int y) {
+		return null;
 	}
 }

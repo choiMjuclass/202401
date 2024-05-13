@@ -2,6 +2,7 @@ package shapeTools;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import shapeTools.GShape.EAnchor;
 import shapeTools.GShape.EDrawingStyle;
 
 public class GRectangle extends GShape {
@@ -27,5 +28,9 @@ public class GRectangle extends GShape {
 	public void draw(Graphics graphics) {
 		// TODO Auto-generated method stub
 		graphics.drawRect(x1, y1, x2-x1, y2-y1);		
+	}
+	
+	public EAnchor onShape(int x, int y) {
+		return null;
 	}
 }
