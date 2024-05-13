@@ -35,10 +35,10 @@ public class VSugangSincheong extends JPanel {
 		this.add(vSingcheongTable);
 	}
 	public void initialize() {
-		
+		this.vSelectionPanel.initialize();
+		this.vControlPanel1.initialize();
+		this.vMiridamgiTable.initialize();
+		this.vControlPanel2.initialize();
+		this.vSingcheongTable.initialize();
 	}
-	public void run() {	
-		
-	}
-
 }

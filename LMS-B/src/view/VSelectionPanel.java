@@ -24,4 +24,9 @@ public class VSelectionPanel extends JPanel {
 		this.add(this.vLectureTable);
 	}
 
+	public void initialize() {
+		this.vIndexPanel.initialize();
+		this.vLectureTable.initialize();		
+	}
+
 }

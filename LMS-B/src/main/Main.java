@@ -16,7 +16,9 @@ public class Main {
 		this.vMainFrame.setVisible(true);
 	}
 	public void initialize() {
+		this.vMainFrame.initialize();
 	}
+	
 	// methods
 	public void run() {
 	}
@@ -25,6 +27,7 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.initialize();
+		
 		main.run();
 		
 	}

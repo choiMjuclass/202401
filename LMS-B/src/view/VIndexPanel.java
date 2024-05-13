@@ -14,20 +14,29 @@ public class VIndexPanel extends JPanel {
 	private VIndexTable vDepartment;
 	
 	VIndexPanel() {
+		// components
 		LayoutManager layoutManager = new BoxLayout(this, BoxLayout.X_AXIS);
 		this.setLayout(layoutManager);
 
 		this.vCampus = new VIndexTable();
-		JScrollPane scrollPane1 = new JScrollPane(this.vCampus);
-		this.add(scrollPane1);
+		this.add(vCampus);
 		
 		this.vCollege = new VIndexTable();
-		JScrollPane scrollPane2 = new JScrollPane(this.vCollege);
-		this.add(scrollPane2);
+		this.add(vCollege);
 		
 		this.vDepartment = new VIndexTable();
-		JScrollPane scrollPane3 = new JScrollPane(this.vDepartment);
-		this.add(scrollPane3);
+		this.add(vDepartment);
+		
+		// associations
+		this.vCampus.setNext(vCollege);
+		this.vCollege.setNext(vDepartment);
 	}
 
+	public void initialize() {		
+		this.vCampus.initialize();
+		this.vCollege.initialize();
+		this.vDepartment.initialize();
+		
+		this.vCampus.show("root");
+	}
 }

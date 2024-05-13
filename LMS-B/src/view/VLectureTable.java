@@ -13,4 +13,9 @@ public class VLectureTable extends JScrollPane {
 		this.setViewportView(table);
 	}
 
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

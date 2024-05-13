@@ -14,10 +14,10 @@ public class DAOCampus {	// attributes
 	public void initialize() {
 	}
 	// methods
-	public Vector<MCampus> getList() {
+	public Vector<MCampus> getList(String fileName) {
 		Vector<MCampus> mCampusList = new Vector<MCampus>();
 		try {
-			File file = new File("data/root");
+			File file = new File("data/"+fileName+".txt");
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNext()) {
 				// deserialize
