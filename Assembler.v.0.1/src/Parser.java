@@ -6,7 +6,9 @@ public class Parser extends Node {
 	public Parser(LexicalAnalyzer lexicalAnalyzer) {
 		super(lexicalAnalyzer);
 	}
-	
+	public void initialize() {
+		
+	}
 	@Override
 	public String parse(String token) throws Exception {
 		// TODO Auto-generated method stub

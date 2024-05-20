@@ -20,3 +20,4 @@
 /DataSegment.class
 /DataSegment$Symbol.class
 /Instruction.class
+/Instruction$ECommand.class

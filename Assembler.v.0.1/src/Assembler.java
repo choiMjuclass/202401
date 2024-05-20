@@ -4,10 +4,10 @@ public class Assembler {
 	private Parser parser;
 	
 	public Assembler() {
-		this.lexicalAnalyzer = new LexicalAnalyzer("source/test.txt");
+		this.lexicalAnalyzer = new LexicalAnalyzer("test");
 		this.parser = new Parser(this.lexicalAnalyzer);		
 	}
-	
+
 	// methods
 	public void run() {	
 		try {
@@ -18,6 +18,9 @@ public class Assembler {
 		}
 	}
 	public void initialize() {
+		this.lexicalAnalyzer.initialize();
+		this.parser.initialize()
+		;
 	}
 	public void finish() {
 		// TODO Auto-generated method stub
