@@ -18,6 +18,7 @@ public class VIndexTable extends JScrollPane {
 	// components
 	private JTable table;
 	private DefaultTableModel model;
+	private Vector<MIndex> mIndexList;
 	
 	// associations
 	private VIndexTable next;	
@@ -31,34 +32,37 @@ public class VIndexTable extends JScrollPane {
 		
 		MouseHandler mouseHandler = new MouseHandler();
 		this.table.addMouseListener(mouseHandler);
-		
+		this.newModel();
+
+	}
+	private void newModel() {
 		// associate the table with a Model
 		String header[] = {	"아이디", "캠퍼스" };
 		this.model = new DefaultTableModel(null, header);
-		this.table.setModel(this.model);
+		this.table.setModel(this.model);		
 	}
 	
 	public void show(String fileName) {
 		// get data from CCampus
 		CIndex cIndex = new CIndex();
-		Vector<MIndex> mIndexList = cIndex.getList(fileName+".txt");
+		this.mIndexList = cIndex.getList(fileName+".txt");
 		// set data to Model
-		for (MIndex mIndex: mIndexList) {
+		this.newModel();
+		
+		for (MIndex mIndex: this.mIndexList) {
 			String[] row = new String[2];
 			row[0] = String.valueOf(mIndex.getId());
 			row[1] = mIndex.getName();
 			this.model.addRow(row);
 		}		
 		this.updateUI();
-		
-		if (this.next != null) {
-			this.next.show(mIndexList.get(0).getFileName());
-		}
+		// default
+		showNext(0);
 	}
 	
 	private void showNext(int selectedIndex) {
 		if (this.next != null) {
-			this.next.show(mIndexList.get(0).getFileName());
+			this.next.show(this.mIndexList.get(selectedIndex).getFileName());
 		}
 	}
 	
@@ -66,7 +70,8 @@ public class VIndexTable extends JScrollPane {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			showNext(table.getSelectedRow());
+			int row = table.getSelectedRow();
+			showNext(row);
 		}
 
 		@Override
