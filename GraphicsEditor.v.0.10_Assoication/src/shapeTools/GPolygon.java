@@ -2,6 +2,7 @@ package shapeTools;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 
 import global.Constants;
 
@@ -13,7 +14,7 @@ public class GPolygon extends GShape {
 	private int nPoints;
 	
 	public GPolygon() {
-		super(EDrawingStyle.eNPStyle);
+		super(EDrawingStyle.eNPStyle, new Polygon());
 		
 		this.xPoints = new int[Constants.NUM_POINTS];
 		this.yPoints = new int[Constants.NUM_POINTS];
