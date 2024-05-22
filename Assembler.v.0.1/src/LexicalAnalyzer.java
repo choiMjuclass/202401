@@ -17,7 +17,7 @@ public class LexicalAnalyzer {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 	public void fianlize() {
 		this.scanner.close();
