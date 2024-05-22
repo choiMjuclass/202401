@@ -12,21 +12,20 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-import control.CCampus;
-import model.MCampus;
+import control.CIndex;
+import model.MIndex;
 
-public class VIndexTable extends JScrollPane {
+public class VIndexTable extends JScrollPane implements IIndexTable {
 	// attributes
 	private static final long serialVersionUID = 1L;
-	private boolean bInitialized;
 	// components
 	private JTable table;
 	private DefaultTableModel model;
-	private Vector<MCampus> mCampusList;
+	private Vector<MIndex> mIndexList;
 	
 	// associations
-	private VIndexTable next;
-	public void setNext(VIndexTable next) { this.next = next; }
+	private IIndexTable next;
+	public void setNext(IIndexTable next) { this.next = next; }
 	
 	public VIndexTable() {
 		// components
@@ -50,33 +49,24 @@ public class VIndexTable extends JScrollPane {
 	
 	public void show(String fileName) {
 		// get data
-		CCampus cCampus = new CCampus();
-		this.mCampusList = cCampus.getList(fileName);
+		CIndex cIndex = new CIndex();
+		this.mIndexList = cIndex.getList(fileName);
 		this.model.setRowCount(0);
 		
-		for (MCampus mCampus: this.mCampusList) {
-			String[] row = new String[2];
-			row[0] = String.valueOf(mCampus.getId());
-			row[1] = mCampus.getName();			
-			this.model.addRow(row);
+		for (MIndex mIndex: this.mIndexList) {
+			String[] colums = new String[2];
+			colums[0] = String.valueOf(mIndex.getId());
+			colums[1] = mIndex.getName();			
+			this.model.addRow(colums);
 		}
 		this.showNext(0);
 	}
 	
 	private void showNext(int rowIndex) {
 		if (this.next != null) {
-			this.next.show(this.mCampusList.get(rowIndex).getLink());
+			this.next.show(this.mIndexList.get(rowIndex).getLink());
 		}		
 	}	
-//	private class TableModelHandler implements TableModelListener {
-//		@Override
-//		public void tableChanged(TableModelEvent e) {
-//			// TODO Auto-generated method stub
-//			int rowIndex = e.getFirstRow();
-//			showNext(rowIndex);
-//		}
-//		
-//	}
 	
 	private class MouseHandler implements MouseListener {
 		@Override

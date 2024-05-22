@@ -5,17 +5,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class DAOCampus {	// attributes
+public class DAOIndex {	// attributes
 	// associations
 	
 	// constructors
-	public DAOCampus() {
+	public DAOIndex() {
 	}
 	public void initialize() {
 	}
 	// methods
-	public Vector<MCampus> getList(String fileName) {
-		Vector<MCampus> mCampusList = new Vector<MCampus>();
+	public Vector<MIndex> getList(String fileName) {
+		Vector<MIndex> mCampusList = new Vector<MIndex>();
 		try {
 			File file = new File("data/"+fileName+".txt");
 			Scanner scanner = new Scanner(file);
@@ -24,7 +24,7 @@ public class DAOCampus {	// attributes
 				String line = scanner.nextLine();
 				String[] wordList = line.split(" ");
 				
-				MCampus mCampus = new MCampus();
+				MIndex mCampus = new MIndex();
 				mCampus.setId(Integer.parseInt(wordList[0]));
 				mCampus.setName(wordList[1]);
 				mCampus.setLink(wordList[2]);

@@ -32,11 +32,16 @@ public class VIndexPanel extends JPanel {
 		this.vCollege.setNext(vDepartment);
 	}
 
-	public void initialize() {		
+	public void initialize() {	
 		this.vCampus.initialize();
 		this.vCollege.initialize();
 		this.vDepartment.initialize();
 		
 		this.vCampus.show("root");
+	}
+
+	public void associate(VLectureTable vLectureTable) {
+		// TODO Auto-generated method stub
+		this.vDepartment.setNext(vLectureTable);
 	}
 }

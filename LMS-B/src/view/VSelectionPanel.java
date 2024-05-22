@@ -22,6 +22,8 @@ public class VSelectionPanel extends JPanel {
 		
 		this.vLectureTable = new VLectureTable();
 		this.add(this.vLectureTable);
+		
+		this.vIndexPanel.associate(this.vLectureTable);
 	}
 
 	public void initialize() {

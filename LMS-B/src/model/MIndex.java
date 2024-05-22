@@ -1,12 +1,12 @@
 package model;
 
 // components
-public class MCampus {
+public class MIndex {
 	private int id;
 	private String name;
 	private String link;	
 	
-	public MCampus() {}
+	public MIndex() {}
 	
 	public int getId() {	return id; }
 	public void setId(int id) { this.id = id; }
