@@ -33,4 +33,9 @@ public class VIndexPanel extends JPanel {
 		this.vCampus.show("root");
 	}
 
+	public void associate(VLectureTable vLectureTable) {
+		// TODO Auto-generated method stub
+		this.vDepartment.setNext(vLectureTable);
+	}
+
 }

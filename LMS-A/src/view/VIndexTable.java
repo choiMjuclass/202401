@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import control.CIndex;
 import model.MIndex;
 
-public class VIndexTable extends JScrollPane {
+public class VIndexTable extends JScrollPane implements IIndex {
 	// attributes
 	private static final long serialVersionUID = 1L;
 	
@@ -21,8 +21,8 @@ public class VIndexTable extends JScrollPane {
 	private Vector<MIndex> mIndexList;
 	
 	// associations
-	private VIndexTable next;	
-	public void setNext(VIndexTable next) { this.next = next; }
+	private IIndex next;	
+	public void setNext(IIndex next) { this.next = next; }
 	
 	// methods
 	public VIndexTable() {
@@ -34,6 +34,8 @@ public class VIndexTable extends JScrollPane {
 		this.table.addMouseListener(mouseHandler);
 		this.newModel();
 
+	}
+	public void initialize() {		
 	}
 	private void newModel() {
 		// associate the table with a Model
@@ -47,7 +49,7 @@ public class VIndexTable extends JScrollPane {
 		CIndex cIndex = new CIndex();
 		this.mIndexList = cIndex.getList(fileName+".txt");
 		// set data to Model
-		this.newModel();
+		this.model.setRowCount(0);
 		
 		for (MIndex mIndex: this.mIndexList) {
 			String[] row = new String[2];
