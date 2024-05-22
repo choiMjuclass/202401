@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.RectangularShape;
 
 import shapeTools.GShape.EDrawingStyle;
 
@@ -18,15 +19,10 @@ public class GOval extends GShape {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setXORMode(graphics2D.getBackground());
 		
-		Ellipse2D.Float shape = (Ellipse2D.Float)this.shape;
+		RectangularShape shape = (RectangularShape)this.shape;
 		shape.setFrame(x1, y1, ox2-x1, oy2-y1);
 		graphics2D.draw(shape);
 		shape.setFrame(x1, y1, x2-x1, y2-y1);
 		graphics2D.draw(shape);
-	}
-	@Override
-	public void draw(Graphics graphics) {
-		// draw new shape
-		graphics.drawOval(x1, y1, x2-x1, y2-y1);	
 	}
 }

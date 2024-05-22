@@ -9,16 +9,9 @@ import global.Constants;
 public class GPolygon extends GShape {
 
 	private static final long serialVersionUID = 1L;
-	private int xPoints[];
-	private int yPoints[];
-	private int nPoints;
 	
 	public GPolygon() {
 		super(EDrawingStyle.eNPStyle, new Polygon());
-		
-		this.xPoints = new int[Constants.NUM_POINTS];
-		this.yPoints = new int[Constants.NUM_POINTS];
-		this.nPoints = 0;
 	}	
 	public GPolygon clone() {
 		return new GPolygon();
@@ -29,34 +22,29 @@ public class GPolygon extends GShape {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		graphics2D.setXORMode(graphics2D.getBackground());
 		// erase old shape 
-		graphics.drawPolyline(xPoints, yPoints, nPoints);
-		// draw new shape
-//		graphics.drawPolyline(xPoints, yPoints, nPoints);
+		Polygon polygon = (Polygon)this.shape;
+		graphics.drawLine(
+				polygon.xpoints[polygon.npoints-2], polygon.ypoints[polygon.npoints-2],
+				polygon.xpoints[polygon.npoints-1], polygon.ypoints[polygon.npoints-1]
+		);
+		polygon.xpoints[polygon.npoints-1] = x2;
+		polygon.ypoints[polygon.npoints-1] = y2;
+		
+		graphics.drawLine(
+				polygon.xpoints[polygon.npoints-2], polygon.ypoints[polygon.npoints-2],
+				polygon.xpoints[polygon.npoints-1], polygon.ypoints[polygon.npoints-1]
+		);
 	}
 
 	@Override
-	public void draw(Graphics graphics) {
-		// TODO Auto-generated method stub
-		graphics.drawPolygon(xPoints, yPoints, nPoints);
-	}
-	@Override
 	public void setOrigin(int x, int y) {
-		this.xPoints[nPoints] = x;
-		this.yPoints[nPoints] = y;
-		
-		this.nPoints++;
-		this.xPoints[nPoints] = x;
-		this.yPoints[nPoints] = y;
-	}
-	@Override
-	public void movePoint(int x, int y) {
-		this.xPoints[nPoints] = x;
-		this.yPoints[nPoints] = y;
+		Polygon polygon = (Polygon)this.shape;
+		polygon.addPoint(x, y);
+		polygon.addPoint(x, y);
 	}
 	@Override
 	public void addPoint(int x, int y) {
-		this.nPoints++;		
-		this.xPoints[nPoints] = x;
-		this.yPoints[nPoints] = y;
+		Polygon polygon = (Polygon)this.shape;
+		polygon.addPoint(x, y);
 	}
 }

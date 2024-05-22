@@ -86,11 +86,11 @@ public class GDrawingPanel extends JPanel {
 	private void ContinueDrawing(int x, int y) {
 		currentShape.addPoint(x, y);
 	}
-
 	private void stopDrawing(int x, int y) {
-		currentShape.addPoint(x, y);
+//		currentShape.addPoint(x, y);
 		shapes.add(currentShape);
 	}
+	
 	private GShape onShape(int x, int y) {
 		for (GShape shape: this.shapes) {
 			boolean isShape = shape.onShape(x, y);
@@ -148,7 +148,7 @@ public class GDrawingPanel extends JPanel {
 						eDrawingState = EDrawingState.e2PState;
 					}
 				} else {
-					currentShape.startMove(e.getX(), e.getY());
+					currentShape.startMove(getGraphics(), e.getX(), e.getY());
 					eDrawingState = EDrawingState.eTransformation;
 				}
 			}
@@ -158,7 +158,7 @@ public class GDrawingPanel extends JPanel {
 			if (eDrawingState == EDrawingState.e2PState) {
 				keepDrawing(e.getX(), e.getY());
 			} else if (eDrawingState == EDrawingState.eTransformation) {
-				currentShape.keepMove(e.getX(), e.getY());			
+				currentShape.keepMove(getGraphics(), e.getX(), e.getY());			
 			}
 		}
 		@Override
@@ -167,7 +167,7 @@ public class GDrawingPanel extends JPanel {
 				stopDrawing(e.getX(), e.getY());
 				eDrawingState = EDrawingState.eIdle;
 			} else if (eDrawingState == EDrawingState.eTransformation) {
-				currentShape.stopMove(e.getX(), e.getY());			
+				currentShape.stopMove(getGraphics(), e.getX(), e.getY());			
 				eDrawingState = EDrawingState.eIdle;
 			}
 		}

@@ -24,10 +24,4 @@ public class GLine extends GShape {
 		shape.setLine(x1, y1, x2, y2);
 		graphics2D.draw(shape);	
 	}
-	@Override
-	public void draw(Graphics graphics) {
-		// TODO Auto-generated method stub
-		Graphics2D graphics2D = (Graphics2D) graphics;
-		graphics2D.draw(shape);		
-	}
 }
