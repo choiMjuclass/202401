@@ -33,6 +33,9 @@ public class VSugangSincheong extends JPanel {
 		
 		this.vSingcheongTable = new VLectureTable();
 		this.add(vSingcheongTable);
+		
+		this.vControlPanel1.associate(vSelectionPanel.getLectureTable(), vMiridamgiTable);
+		this.vControlPanel2.associate(vMiridamgiTable, vSingcheongTable);
 	}
 	public void initialize() {
 		this.vSelectionPanel.initialize();

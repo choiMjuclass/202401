@@ -25,6 +25,33 @@ public class VLectureTable extends JScrollPane implements IIndexTable {
 	private IIndexTable next;
 	public void setNext(IIndexTable next) { this.next = next; }
 	
+	// setters and getters
+	public Vector<MLecture> getSelectedList() {
+		// TODO Auto-generated method stub
+		int[] selectedIdices = this.table.getSelectedRows();
+		Vector<MLecture> selectedList = new Vector<MLecture>();
+		for (int index: selectedIdices) {
+			selectedList.add(mLectureList.get(index));
+		}
+		return selectedList;
+	}
+	
+	public void addSelectedList(Vector<MLecture> selectedList) {
+		// TODO Auto-generated method stub	
+		for (MLecture mLecture: selectedList) {
+			mLectureList.add(mLecture);
+			
+			String[] columns = new String[5];
+			columns[0] = mLecture.getId();
+			columns[1] = mLecture.getTitle();		
+			columns[2] = mLecture.getLecturer();	
+			columns[3] = mLecture.getCredit();	
+			columns[4] = mLecture.getTime();	
+			this.model.addRow(columns);
+		}
+		this.table.updateUI();
+	}
+	
 	public VLectureTable() {
 		// components
 		// table
@@ -40,6 +67,8 @@ public class VLectureTable extends JScrollPane implements IIndexTable {
 		// set listener
 		MouseHandler mouseHandler = new MouseHandler();
 		this.table.addMouseListener(mouseHandler);
+		
+		this.mLectureList = new Vector<MLecture>();
 
 	}
 	public void initialize() {
@@ -86,5 +115,7 @@ public class VLectureTable extends JScrollPane implements IIndexTable {
 		}
 		
 	}
+
+
 
 }

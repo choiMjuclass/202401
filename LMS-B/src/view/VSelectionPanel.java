@@ -31,4 +31,9 @@ public class VSelectionPanel extends JPanel {
 		this.vLectureTable.initialize();		
 	}
 
+	public VLectureTable getLectureTable() {
+		// TODO Auto-generated method stub
+		return vLectureTable;
+	}
+
 }
