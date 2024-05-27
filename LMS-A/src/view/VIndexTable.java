@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import control.CIndex;
@@ -56,7 +57,9 @@ public class VIndexTable extends JScrollPane implements IIndex {
 			row[0] = String.valueOf(mIndex.getId());
 			row[1] = mIndex.getName();
 			this.model.addRow(row);
-		}		
+		}
+		this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.table.setRowSelectionInterval(0, 0);
 		this.updateUI();
 		// default
 		showNext(0);

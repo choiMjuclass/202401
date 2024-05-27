@@ -23,6 +23,34 @@ public class VLectureTable extends JScrollPane implements IIndex {
 	
 	// associations
 	
+	// getters and setters
+	public Vector<MLecture> getSelectedLectureList() {
+		// TODO Auto-generated method stub
+		int[] selectedIndices = this.table.getSelectedRows();
+		
+		Vector<MLecture> vSelectedLectureList = new Vector<MLecture>();
+		for (int index: selectedIndices) {
+			vSelectedLectureList.add(this.mLectureList.get(index));
+		}		
+		return vSelectedLectureList;
+	}
+	
+	public void addSelectedLectureList(Vector<MLecture> selectedLectureList) {
+		// TODO Auto-generated method stub
+		for (MLecture mLecture: selectedLectureList) {
+			this.mLectureList.add(mLecture);
+			
+			String[] row = new String[5];
+			row[0] = String.valueOf(mLecture.getId());
+			row[1] = mLecture.getName();
+			row[2] = mLecture.getLecturer();
+			row[3] = String.valueOf(mLecture.getCredit());
+			row[4] = mLecture.getTime();
+			this.model.addRow(row);
+		}
+		this.updateUI();
+	}
+	
 	// methods
 	public VLectureTable() {
 		// generate Table as a Component
@@ -32,6 +60,8 @@ public class VLectureTable extends JScrollPane implements IIndex {
 		MouseHandler mouseHandler = new MouseHandler();
 		this.table.addMouseListener(mouseHandler);
 		this.newModel();
+		
+		this.mLectureList = new Vector<MLecture>();
 
 	}
 	public void initialize() {
@@ -68,6 +98,7 @@ public class VLectureTable extends JScrollPane implements IIndex {
 	private void showNext(int selectedIndex) {
 	}
 	
+	
 	private class MouseHandler implements MouseListener {
 
 		@Override
@@ -89,5 +120,10 @@ public class VLectureTable extends JScrollPane implements IIndex {
 		public void mouseExited(MouseEvent e) {
 		}
 	}
+
+
+
+
+
 
 }
