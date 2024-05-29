@@ -3,20 +3,18 @@ package view;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 
-import constants.Constant.MainFrame;
-
 public class VMainFrame extends JFrame {
 	// attributes
-	private static final long serialVersionUID = MainFrame.VERSION_NUM;	
+	private static final long serialVersionUID = 1L;	
 	
 	// components
 	private VSugangSincheong vSugangSincheong;
 	
 	public VMainFrame() throws HeadlessException {
 		// attributes
-		this.setTitle(MainFrame.TITLE);
-		this.setLocation(MainFrame.X, MainFrame.Y);
-		this.setSize(MainFrame.WIDTH,MainFrame.HEIGHT);
+		this.setTitle("수강신청");
+		this.setLocation(300, 100);
+		this.setSize(600,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// components
