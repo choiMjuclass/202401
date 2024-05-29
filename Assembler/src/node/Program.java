@@ -1,3 +1,6 @@
+package node;
+import lexicalAnalyzer.EKeyword;
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public class Program extends Node {
 
@@ -37,6 +40,12 @@ public class Program extends Node {
 			throw new Exception();
 		}
 	
+		return null;
+	}
+
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

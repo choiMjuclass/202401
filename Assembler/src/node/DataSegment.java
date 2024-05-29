@@ -1,4 +1,8 @@
+package node;
 import java.util.Vector;
+
+import lexicalAnalyzer.EKeyword;
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public class DataSegment extends Node {
 
@@ -33,6 +37,12 @@ public class DataSegment extends Node {
 			name = lexicalAnalyzer.getToken();
 		}		
 		return name;
+	}
+
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

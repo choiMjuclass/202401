@@ -1,3 +1,6 @@
+package node;
+import lexicalAnalyzer.EKeyword;
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public class HeaderSegment extends Node {
 
@@ -25,6 +28,12 @@ public class HeaderSegment extends Node {
 			keyword = lexicalAnalyzer.getToken();
 		}		
 		return keyword;
+	}
+
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

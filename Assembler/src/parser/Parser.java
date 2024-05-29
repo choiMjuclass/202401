@@ -1,3 +1,8 @@
+package parser;
+import lexicalAnalyzer.EKeyword;
+import lexicalAnalyzer.LexicalAnalyzer;
+import node.Node;
+import node.Program;
 
 public class Parser extends Node {
 	
@@ -18,5 +23,10 @@ public class Parser extends Node {
 			this.program.parse(token);
 		} 
 		throw new Exception();
+	}
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

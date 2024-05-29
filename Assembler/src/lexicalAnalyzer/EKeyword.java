@@ -1,3 +1,4 @@
+package lexicalAnalyzer;
 
 public enum EKeyword {
 	eProgram(".program"),

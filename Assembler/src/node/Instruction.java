@@ -1,3 +1,5 @@
+package node;
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public class Instruction extends Node {
 
@@ -40,6 +42,12 @@ public class Instruction extends Node {
 			eNextCommand = ECommand.valueOf(nextToken);
 		}
 		return nextToken;
+	}
+
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

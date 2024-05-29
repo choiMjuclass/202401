@@ -1,3 +1,5 @@
+package node;
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public abstract class Node {
 	
@@ -8,4 +10,5 @@ public abstract class Node {
 	}
 	
 	public abstract String parse(String token)throws Exception;
+	public abstract String generate()throws Exception;
 }

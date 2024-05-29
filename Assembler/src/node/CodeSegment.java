@@ -1,4 +1,7 @@
+package node;
 import java.util.Vector;
+
+import lexicalAnalyzer.LexicalAnalyzer;
 
 public class CodeSegment extends Node {
 	
@@ -20,5 +23,11 @@ public class CodeSegment extends Node {
 			instructions.add(instruction);
 		}		
 		return command;
+	}
+
+	@Override
+	public String generate() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
