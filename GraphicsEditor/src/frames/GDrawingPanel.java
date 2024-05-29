@@ -5,21 +5,12 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 import shapeTools.GShape;
-import shapeTools.GShape.EAnchor;
+import shapeTools.GShape.EAnchors;
 import shapeTools.GShape.EDrawingStyle;
 
 public class GDrawingPanel extends JPanel {
@@ -162,7 +153,13 @@ public class GDrawingPanel extends JPanel {
 						eDrawingState = EDrawingState.e2PState;
 					}
 				} else {
-					currentShape.startMove(getGraphics(), e.getX(), e.getY());
+					if (currentShape.getSelectedAnchor() == EAnchors.eMM) {
+						currentShape.startMove(getGraphics(), e.getX(), e.getY());
+					} else if (currentShape.getSelectedAnchor() == EAnchors.eRR) {
+						
+					} else {
+						currentShape.startResize(getGraphics(), e.getX(), e.getY());
+					}
 					eDrawingState = EDrawingState.eTransformation;
 				}
 			}
@@ -172,7 +169,13 @@ public class GDrawingPanel extends JPanel {
 			if (eDrawingState == EDrawingState.e2PState) {
 				keepDrawing(e.getX(), e.getY());
 			} else if (eDrawingState == EDrawingState.eTransformation) {
-				currentShape.keepMove(getGraphics(), e.getX(), e.getY());			
+				if (currentShape.getSelectedAnchor() == EAnchors.eMM) {
+					currentShape.keepMove(getGraphics(), e.getX(), e.getY());
+				} else if (currentShape.getSelectedAnchor() == EAnchors.eRR) {
+					
+				} else {
+					currentShape.keepResize(getGraphics(), e.getX(), e.getY());
+				}
 			}
 		}
 		@Override
@@ -181,7 +184,13 @@ public class GDrawingPanel extends JPanel {
 				stopDrawing(e.getX(), e.getY());
 				eDrawingState = EDrawingState.eIdle;
 			} else if (eDrawingState == EDrawingState.eTransformation) {
-				currentShape.stopMove(getGraphics(), e.getX(), e.getY());			
+				if (currentShape.getSelectedAnchor() == EAnchors.eMM) {
+					currentShape.stopMove(getGraphics(), e.getX(), e.getY());
+				} else if (currentShape.getSelectedAnchor() == EAnchors.eRR) {
+					
+				} else {
+					currentShape.stopResize(getGraphics(), e.getX(), e.getY());
+				}
 				eDrawingState = EDrawingState.eIdle;
 			}
 		}

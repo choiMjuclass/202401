@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -14,11 +16,6 @@ public abstract class GShape implements Serializable {
 	public enum EDrawingStyle {
 		e2PStyle,
 		eNPStyle
-	}
-	public enum EAnchor {
-		eMove,
-		eResize,
-		eRotate		
 	}
 	private EDrawingStyle eDrawingStyle;
 	public EDrawingStyle getEDrawingStyle() {
@@ -151,16 +148,54 @@ public abstract class GShape implements Serializable {
 		}
 		return isOnShape;
 	}
-
-
 	
 	public void startMove(Graphics graphics, int x, int y) {
-		this.setOrigin(x, y);
+		this.ox2 = x;
+		this.oy2 = y;
+		this.x2 = x;
+		this.y2 = y;
 	}
 	public void keepMove(Graphics graphics, int x, int y) {
-		this.movePoint(x, y);
+		this.ox2 = this.x2;
+		this.oy2 = this.y2;
+		this.x2 = x;
+		this.y2 = y;
+		
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setXORMode(graphics2D.getBackground());
+		graphics2D.draw(this.shape);
+		
+		AffineTransform affineTransform = new AffineTransform();
+		affineTransform.setToTranslation(x2-ox2, y2-oy2);
+		this.shape = affineTransform.createTransformedShape(this.shape);
+		
+		graphics2D.draw(this.shape);
 	}
 	public void stopMove(Graphics graphics, int x, int y) {
+	}
+	
+	public void startResize(Graphics graphics, int x, int y) {
+		this.ox2 = x;
+		this.oy2 = y;
+		this.x2 = x;
+		this.y2 = y;
+	}
+	public void keepResize(Graphics graphics, int x, int y) {
+		this.ox2 = this.x2;
+		this.oy2 = this.y2;
+		this.x2 = x;
+		this.y2 = y;
 		
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setXORMode(graphics2D.getBackground());
+		graphics2D.draw(this.shape);
+		
+//		AffineTransform affineTransform = new AffineTransform();
+//		affineTransform.setToTranslation(x2-ox2, y2-oy2);
+//		this.shape = affineTransform.createTransformedShape(this.shape);
+		
+		graphics2D.draw(this.shape);
+	}
+	public void stopResize(Graphics graphics, int x, int y) {
 	}
 }

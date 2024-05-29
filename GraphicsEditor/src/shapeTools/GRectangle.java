@@ -2,14 +2,12 @@ package shapeTools;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.RectangularShape;
-
-import shapeTools.GShape.EAnchor;
-import shapeTools.GShape.EDrawingStyle;
 
 public class GRectangle extends GShape {
 	
+	private static final long serialVersionUID = 1L;
+
 	public GRectangle() {
 		super(EDrawingStyle.e2PStyle, new Rectangle());
 	}	
@@ -27,25 +25,5 @@ public class GRectangle extends GShape {
 		graphics2D.draw(shape);
 		shape.setFrame(x1, y1, x2-x1, y2-y1);
 		graphics2D.draw(shape);
-	}
-	
-	public void startMove(Graphics graphics, int x, int y) {
-		super.startMove(graphics, x, y);
-	}
-	public void keepMove(Graphics graphics,int x, int y) {
-		super.keepMove(graphics, x, y);
-		
-		Graphics2D graphics2D = (Graphics2D) graphics;
-		graphics2D.setXORMode(graphics2D.getBackground());
-
-		RectangularShape shape = (RectangularShape)this.shape;
-		graphics2D.draw(shape);
-		shape.setFrame(shape.getX()+x2-ox2, shape.getY()+y2-oy2, shape.getWidth(), shape.getHeight());
-		graphics2D.draw(shape);
-		
-	}
-	
-	public void stopMove(Graphics graphics,int x, int y) {
-		super.stopMove(graphics, x, y);
 	}
 }
