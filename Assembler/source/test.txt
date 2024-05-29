@@ -1,5 +1,5 @@
 .program test
-	nop
+	nop 
 .header
 	stack 1024
 	heap 1024
