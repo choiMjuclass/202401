@@ -7,11 +7,7 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.RectangularShape;
 import java.io.Serializable;
-import java.util.Vector;
-
-import global.GConstants.EAnchors;
 
 public abstract class GShape implements Serializable {
 	private static final long serialVersionUID = 1L;
