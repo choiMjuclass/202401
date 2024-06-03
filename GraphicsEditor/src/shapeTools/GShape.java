@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 import java.util.Vector;
@@ -48,6 +49,9 @@ public abstract class GShape implements Serializable {
 	}
 	private EAnchors eSelectedAnchor;
 	protected Ellipse2D.Float[] anchors;
+	
+	private double sx, sy;
+	private double dx, dy;
 	
 	// setters and getters
 	public void setSelected(Graphics graphics) {
@@ -165,8 +169,10 @@ public abstract class GShape implements Serializable {
 		graphics2D.setXORMode(graphics2D.getBackground());
 		graphics2D.draw(this.shape);
 		
+		int dx = x2-ox2;
+		int dy = y2-oy2;
 		AffineTransform affineTransform = new AffineTransform();
-		affineTransform.setToTranslation(x2-ox2, y2-oy2);
+		affineTransform.setToTranslation(dx, dy);
 		this.shape = affineTransform.createTransformedShape(this.shape);
 		
 		graphics2D.draw(this.shape);
@@ -180,6 +186,36 @@ public abstract class GShape implements Serializable {
 		this.x2 = x;
 		this.y2 = y;
 	}
+	private Point2D getResizeFactor() {
+		sx = 1.0;
+		sy = 1.0;
+		dx = 0.0;
+		dy = 0.0;
+		
+		double cx = 0;
+		double cy = 0;
+		double w = this.shape.getBounds().getWidth();
+		double h = this.shape.getBounds().getHeight();
+		
+		switch (this.eSelectedAnchor) {
+		case eEE: 
+			sx = (w+x2-ox2)/w;
+			cx = this.anchors[EAnchors.eWW.ordinal()].getCenterX();
+			dx = cx - cx * sx;
+			break;
+		case eWW: 
+			sx = (w+ox2-x2)/w;
+			cx = this.anchors[EAnchors.eEE.ordinal()].getCenterX();
+			dx = cx * sx - cx;
+			break;
+		case eSS: sy = (h+y2-oy2)/h; break;
+		case eNN: sy = (h+oy2-y2)/h; break;
+		default: break;			
+		}
+		
+		return new Point2D.Double(sx, sy);		
+	}
+
 	public void keepResize(Graphics graphics, int x, int y) {
 		this.ox2 = this.x2;
 		this.oy2 = this.y2;
@@ -190,9 +226,13 @@ public abstract class GShape implements Serializable {
 		graphics2D.setXORMode(graphics2D.getBackground());
 		graphics2D.draw(this.shape);
 		
-//		AffineTransform affineTransform = new AffineTransform();
-//		affineTransform.setToTranslation(x2-ox2, y2-oy2);
-//		this.shape = affineTransform.createTransformedShape(this.shape);
+		
+		Point2D resizeFactor = getResizeFactor();
+		
+		AffineTransform affineTransform = new AffineTransform();
+		affineTransform.setToScale(resizeFactor.getX(), resizeFactor.getY());
+		affineTransform.translate(dx, dy);
+		this.shape = affineTransform.createTransformedShape(this.shape);
 		
 		graphics2D.draw(this.shape);
 	}
