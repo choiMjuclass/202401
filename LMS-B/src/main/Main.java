@@ -1,5 +1,6 @@
 package main;
 
+import view.VLoginDialog;
 import view.VMainFrame;
 
 public class Main {
@@ -12,6 +13,9 @@ public class Main {
 	
 	// constructors
 	public Main() {
+		VLoginDialog loginDialog = new VLoginDialog();
+		loginDialog.setVisible(true);
+		
 		this.vMainFrame = new VMainFrame();
 		this.vMainFrame.setVisible(true);
 	}
@@ -19,16 +23,9 @@ public class Main {
 		this.vMainFrame.initialize();
 	}
 	
-	// methods
-	public void run() {
-	}
-	
 	// main
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.initialize();
-		
-		main.run();
-		
 	}
 }

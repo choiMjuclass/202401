@@ -17,6 +17,7 @@ public class VMainFrame extends JFrame {
 		this.setTitle(MainFrame.TITLE);
 		this.setLocation(MainFrame.X, MainFrame.Y);
 		this.setSize(MainFrame.WIDTH,MainFrame.HEIGHT);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// components
