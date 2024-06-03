@@ -31,4 +31,8 @@ public class LexicalAnalyzer {
 		}
 		return null;
 	}
+	public void finish() {
+		// TODO Auto-generated method stub
+		
+	}
 }
