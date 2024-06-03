@@ -162,7 +162,13 @@ public class GDrawingPanel extends JPanel {
 						eDrawingState = EDrawingState.e2PState;
 					}
 				} else {
-					currentShape.startMove(getGraphics(), e.getX(), e.getY());
+					if (currentShape.getSelectedAnchor() == GShape.EAnchors.eMM) {
+						currentShape.startMove(getGraphics(), e.getX(), e.getY());
+					} else if (currentShape.getSelectedAnchor() == GShape.EAnchors.eRR) {
+						
+					} else {
+						
+					}
 					eDrawingState = EDrawingState.eTransformation;
 				}
 			}
