@@ -2,9 +2,11 @@ package frames;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -39,7 +41,7 @@ public class GDrawingPanel extends JPanel {
 	// constructors
 	public GDrawingPanel() {
 		// attributes
-		this.setBackground(Color.gray);
+		this.setBackground(Color.WHITE);
 		this.eDrawingState = EDrawingState.eIdle;
 //		this.eTransformation = null;
 		// components
@@ -67,13 +69,26 @@ public class GDrawingPanel extends JPanel {
 		}		
 	}
 
+	private BufferedImage bufferedImage;
+	private Graphics2D graphics;
 	private void startDrawing(int x, int y) {
+		bufferedImage = new BufferedImage(
+				this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+		
+		graphics = (Graphics2D) bufferedImage.getGraphics();
+		graphics.setColor(this.getForeground());
+		graphics.setBackground(this.getBackground());
+		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		
 		currentShape = shapeTool.clone();
 		currentShape.setOrigin(x, y);
 	}
 	private void keepDrawing(int x, int y) {
 		currentShape.movePoint(x, y);
-		currentShape.drag(getGraphics());		
+		
+		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		currentShape.drag(graphics);
+		getGraphics().drawImage(bufferedImage, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 	private void ContinueDrawing(int x, int y) {
 		currentShape.addPoint(x, y);
