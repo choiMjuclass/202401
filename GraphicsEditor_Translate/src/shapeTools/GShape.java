@@ -6,9 +6,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.RectangularShape;
+import java.awt.geom.Point2D;
 import java.io.Serializable;
-import java.util.Vector;
 
 public abstract class GShape implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -153,8 +152,6 @@ public abstract class GShape implements Serializable {
 		}
 		return isOnShape;
 	}
-
-
 	
 	public void startMove(Graphics graphics, int x, int y) {
 		this.setOrigin(x, y);
@@ -176,6 +173,69 @@ public abstract class GShape implements Serializable {
 
 	}
 	public void stopMove(Graphics graphics, int x, int y) {
+	}
+	
+	public void startResize(Graphics graphics, int x, int y) {
+		this.setOrigin(x, y);
+		
+		EAnchors eSelectedAnchor = this.getSelectedAnchor();
+		Point2D resizeOrigin = new Point2D.Float(
+				this.anchors[eSelectedAnchor.ordinal()].x,
+				this.anchors[eSelectedAnchor.ordinal()].y);		
+	}
+	
+	public Point2D computeResizeFactor(Point2D previous, Point2D current) {
+		double px = previous.getX();
+		double py = previous.getY();
+		double cx = current.getX();
+		double cy = current.getY();
+		double width = this.shape.getBounds().getWidth();
+		double height = this.shape.getBounds().getHeight();
+		double deltaW = 0;
+		double deltaH = 0;
+		
+		switch (this.getSelectedAnchor()) {
+			case eEE:  deltaW =  cx-px; 	deltaH=  0; 	 break;
+			case eWW:  deltaW =-(cx-px);	deltaH=  0; 	 break;
+			case eSS:  deltaW =  0;		deltaH=  cy-py;  break;
+			case eNN:  deltaW =  0;		deltaH=-(cy-py); break;
+			case eSE: deltaW =  cx-px; 	deltaH=  cy-py;	 break;
+			case eNE: deltaW =  cx-px; 	deltaH=-(cy-py); break;
+			case eSW: deltaW =-(cx-px);	deltaH=  cy-py;	 break;	
+			case eNW: deltaW =-(cx-px);	deltaH=-(cy-py); break;
+			default: break;
+		}
+		// compute resize 
+		double xFactor = 1.0;
+		double yFactor = 1.0;
+		if (width > 0.0)
+			xFactor = deltaW / width + xFactor;
+		if (height > 0.0)			
+			yFactor = deltaH / height + yFactor;
+		
+		return new Point2D.Double(xFactor, yFactor);
+	}
+	
+	public void keepResize(Graphics graphics, int x, int y) {
+		Point2D resizeFactor = this.computeResizeFactor(
+				new Point2D.Float(ox2, oy2), new Point2D.Float(x2, y2));
+		
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setXORMode(graphics2D.getBackground());		
+		graphics2D.draw(this.shape);
+		//		this.movePoint(x, y);
+		this.x2 = x;
+		this.y2 = y;
+		AffineTransform affineTransform = new AffineTransform();
+		affineTransform.setToScale(x2-ox2, y2-oy2);
+		this.shape = affineTransform.createTransformedShape(this.shape);
+		this.ox2 = x2;
+		this.oy2 = y2;	
+
+		graphics2D.draw(this.shape);
+
+	}
+	public void stopResize(Graphics graphics, int x, int y) {
 		
 	}
 }
